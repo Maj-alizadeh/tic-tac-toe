@@ -1,9 +1,11 @@
 let gameBoardArray = [];
 let turn = 1;
-const restartButton = document.querySelector(".start-button");
+let player1Score = 0;
+let player2Score = 0;
+const startButton = document.querySelector(".start-button");
 
 const game = (() => {
-  const display = document.querySelector(".display");
+  const display = document.querySelector(".status-display");
   // player factory
   const player = (name, marker) => ({ name, marker });
   const player1 = player("majed", "X");
@@ -50,11 +52,24 @@ const game = (() => {
       changeTurn();
     }
     // checkWin();
-    if (checkWin() === "X") display.innerHTML = "player 1 wins";
-    if (checkWin() === "O") display.innerHTML = "player 2 wins";
+    if (checkWin() === "X") {
+      display.innerHTML = "player 1 wins";
+      player1Score += 1;
+      start();
+    }
+    if (checkWin() === "O") {
+      display.innerHTML = "player 2 wins";
+      player2Score += 1;
+      start();
+    }
   };
 
-  const restart = () => {
+  const start = () => {
+    const playerName = document.querySelector(".player-name");
+    playerName.style.display = "none";
+    const player1 = document.getElementById("player1");
+    const player2 = document.getElementById("player2");
+    display.innerHTML = `${player1.value} ${player1Score} ${player2.value} ${player2Score} `;
     for (let i = 0; i < gameBoardArray.length; i++) {
       const cell = document.querySelector(`div[data-cell="${i}`);
       cell.innerHTML = "";
@@ -64,7 +79,7 @@ const game = (() => {
 
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell) => cell.addEventListener("click", mark));
-  return { restart };
+  return { start };
 })();
 
-restartButton.addEventListener("click", game.restart);
+startButton.addEventListener("click", game.start);
