@@ -1,0 +1,74 @@
+body {
+    font-size: 1em;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: #fef2f2;
+    height: 25vh;
+}
+h1 {
+    font-size: 3em;
+    margin: 5px auto;
+}
+
+.header label, .header input {
+    height: 30px;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+button {
+    background-color: #f87171;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #ef4444;
+}
+button:active {
+    box-shadow:  inset 2px 2px 2px;
+}
+.staus-display {
+    height: 20px;
+    font-size: 2em;
+}
+
+/* main */
+.main {
+    background-color: #fee2e2;
+    height: 75vh;
+    padding-top: 20px;
+    
+}
+.game-board {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-color: #fca5a5;
+    border: 1px solid black;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+.cell {
+    background-color: #fecaca;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    font-size: 7em;
+}
