@@ -6,33 +6,23 @@ const startButton = document.querySelector(".start-button");
 
 const game = (() => {
   const display = document.querySelector(".status-display");
-  // player factory
-  const player = (name, marker) => ({ name, marker });
-  const player1 = player("majed", "X");
-  const player2 = player("Delaram", "O");
 
   const changeTurn = () => {
     if (turn === 1) turn = 2;
     else turn = 1;
   };
+
+  // checks if a player has won the game
   function checkWin() {
     const gba = gameBoardArray;
-    if (gba[0] === "X" && gba[1] === "X" && gba[2] === "X") return "X";
-    if (gba[3] === "X" && gba[4] === "X" && gba[5] === "X") return "X";
-    if (gba[6] === "X" && gba[7] === "X" && gba[8] === "X") return "X";
-    if (gba[0] === "X" && gba[3] === "X" && gba[6] === "X") return "X";
-    if (gba[1] === "X" && gba[4] === "X" && gba[7] === "X") return "X";
-    if (gba[2] === "X" && gba[5] === "X" && gba[8] === "X") return "X";
-    if (gba[0] === "X" && gba[4] === "X" && gba[8] === "X") return "X";
-    if (gba[1] === "X" && gba[4] === "X" && gba[6] === "X") return "X";
-    if (gba[0] === "O" && gba[1] === "O" && gba[2] === "O") return "O";
-    if (gba[3] === "O" && gba[4] === "O" && gba[5] === "O") return "O";
-    if (gba[6] === "O" && gba[7] === "O" && gba[8] === "O") return "O";
-    if (gba[0] === "O" && gba[3] === "O" && gba[6] === "O") return "O";
-    if (gba[1] === "O" && gba[4] === "O" && gba[7] === "O") return "O";
-    if (gba[2] === "O" && gba[5] === "O" && gba[8] === "O") return "O";
-    if (gba[0] === "O" && gba[4] === "O" && gba[8] === "O") return "O";
-    if (gba[2] === "O" && gba[4] === "O" && gba[6] === "O") return "O";
+    if (gba[0] === gba[1] && gba[0] === gba[2]) return gba[0];
+    if (gba[3] === gba[4] && gba[3] === gba[5]) return gba[3];
+    if (gba[6] === gba[7] && gba[6] === gba[8]) return gba[6];
+    if (gba[0] === gba[3] && gba[0] === gba[6]) return gba[0];
+    if (gba[1] === gba[4] && gba[1] === gba[7]) return gba[1];
+    if (gba[2] === gba[5] && gba[2] === gba[8]) return gba[2];
+    if (gba[0] === gba[4] && gba[0] === gba[8]) return gba[0];
+    if (gba[2] === gba[4] && gba[2] === gba[6]) return gba[2];
   }
 
   // mark the board and store player's marked cell in the array
@@ -66,10 +56,16 @@ const game = (() => {
 
   const start = () => {
     const playerName = document.querySelector(".player-name");
-    playerName.style.display = "none";
     const player1 = document.getElementById("player1");
     const player2 = document.getElementById("player2");
+    if (player1.value === "") {
+      alert("enter players name");
+      return;
+    }
+    playerName.style.display = "none";
     display.innerHTML = `${player1.value} ${player1Score} ${player2.value} ${player2Score} `;
+    gameBoard = document.querySelector(".game-board");
+    gameBoard.style.display = "grid";
     for (let i = 0; i < gameBoardArray.length; i++) {
       const cell = document.querySelector(`div[data-cell="${i}`);
       cell.innerHTML = "";

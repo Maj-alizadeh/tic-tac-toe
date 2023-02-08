@@ -54,6 +54,7 @@ button:active {
 .game-board {
     padding: 0;
     display: grid;
+    display: none;
     grid-template-columns: repeat(3,1fr);
     background-color: #fca5a5;
     border: 1px solid black;
@@ -63,6 +64,7 @@ button:active {
     margin: 0 auto;
 }
 .cell {
+    display: none;
     background-color: #fecaca;
     border: 1px solid black;
     display: flex;
@@ -71,4 +73,5 @@ button:active {
     padding: 0;
     margin: 0;
     font-size: 7em;
+    height: 164px;
 }
